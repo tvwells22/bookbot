@@ -9,11 +9,13 @@ def main():
 def print_report(book_path, num_words, sorted_list):
     print(f"--- Begin report of {book_path} ---")
     print(f"{num_words} words found in the document\n")
-    print(f"{sorted_list}\n --- End report ---")
+    for letter in sorted_list:
+        print(f"The \'{letter["character"]}\' character was found {letter["count"]} times")
+    print("--- End report ---")
 
 
 def sort_on(dict):
-    return dict["character"]
+    return dict["count"]
     
 
 def sorted_characters(char_dict):
@@ -26,8 +28,8 @@ def sorted_characters(char_dict):
     for dict in char_list:
         if dict["character"].isalpha():
             letter_list.append(dict)
-    #Sort the new list into alphabetical order
-    letter_list.sort(reverse=False, key=sort_on)
+    #Sort the new list into the most to least seen characters
+    letter_list.sort(reverse=True, key=sort_on)
     
     return letter_list
 
